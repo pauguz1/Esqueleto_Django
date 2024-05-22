@@ -1,0 +1,10 @@
+
+
+#ignoramos los archicos de la DB postgreSQL
+postgres_data/
+
+#ignoramos los archivos de la DB SQLite
+*.sqlite3
+*.pyc
+
+

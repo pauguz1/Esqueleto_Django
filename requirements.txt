@@ -1,0 +1,8 @@
+django==4.1.6
+
+#conector postgreSQL
+psycopg2-binary==2.9.9
+
+#para conectar con NGINX
+gunicorn==20.1.0
+

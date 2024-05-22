@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+
+  servidor_proyecto:
+    container_name: servidor_proyecto
+    image: nginx:latest
+    depends_on:
+      - django_proyecto
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - .:/app
+    ports:
+      - "80:80"
+    networks:
+      - internal_network
+
+  django_proyecto:
+    build: .
+    container_name: django_proyecto
+    depends_on:
+      - postgres_proyecto
+    volumes:
+      - .:/app
+    networks:
+      - internal_network
+
+  postgres_proyecto:
+    image: postgres
+    container_name: postgres_proyecto
+    environment:
+      POSTGRES_DB: postgresDB
+      POSTGRES_USER: usuarioDatabase123
+      POSTGRES_PASSWORD: password123*
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal_network
+  
+networks:
+  internal_network:
+    driver: bridge
